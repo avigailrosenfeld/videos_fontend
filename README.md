@@ -7,7 +7,7 @@
 4) run - `npm install`
 
 run appication:
-1) npm run serve
+1) run - `npm run serve`
  
 
 
