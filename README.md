@@ -5,6 +5,9 @@
 2) run - `sudo apt install nodejs npm`
 3) clone this repo
 4) run - `npm install`
-5) 
+
+run appication:
+1) pm run serve
+ 
 
 
