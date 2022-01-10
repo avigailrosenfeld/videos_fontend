@@ -1,4 +1,4 @@
-# videos_frontend
+# Videos Frontend
 
 Setup dev env:
 1) run - `sudo apt update`
