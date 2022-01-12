@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const USER_API_URL = 'http://localhost:5000/api/v1'
+const USER_API_URL = 'http://172.17.0.2:8000'
 
 class UserDataService {
 
