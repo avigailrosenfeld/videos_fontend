@@ -78,7 +78,7 @@ export default {
     return {
       selectedUser:{"id":null,"email":null},
       users: [],
-      fields: ["index","name", "email","delete","edit"],
+      fields: ["index","name", "email","password","delete","edit"],
       currentPage: 1,
       perPage: 3,
     };
@@ -100,8 +100,8 @@ export default {
           console.log(e);
         });
     },
-    createUser(name,email){
-      const body = {'name':name,'email':email}
+    createUser(name,email,password){
+      const body = {'name':name,'email':email, 'password':password}
       UserDataService.create(body)
         .then(response => {
           //this.users = response.data;
@@ -117,8 +117,8 @@ export default {
           this.$bvModal.hide('create-user-modal')
       })
     },
-    updateUser(name,email){
-      const body = {'name':name,'email':email}
+    updateUser(name,email,password){
+      const body = {'name':name,'email':email,'password':password}
       if(this.selectedUser.email != null){
           UserDataService.update(this.selectedUser._id.$oid, body)
             .then(response => {

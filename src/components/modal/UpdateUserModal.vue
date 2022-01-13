@@ -18,8 +18,9 @@
             id="name-input"
             v-model="name"
             :state="nameState"
+            placeholder="Enter your name"
             required
-          ></b-form-input>
+          ></b-form-input>    
         </b-form-group>
         <b-form-group
           label="Email"
@@ -30,7 +31,22 @@
           <b-form-input
             id="email-input"
             v-model="email"
+            placeholder="Enter your email"
             :state="emailState"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="Password"
+          label-for="password-input"
+          invalid-feedback="Password is required"
+          :state="passwordState"
+        >
+          <b-form-input
+            id="password-input"
+            v-model="password"
+            placeholder="Enter your password"
+            :state="passwordState"
             required
           ></b-form-input>
         </b-form-group>
@@ -41,12 +57,15 @@
 <script>
 export default {
   name: "update-user-modal",
+  props: ['user'],
   data() {
     return {
       name:'',
       nameState: null,
       email:'',
       emailState: null,
+      password:'',
+      passwordState: null,
      };
   },
   methods: {
@@ -55,11 +74,14 @@ export default {
         this.nameState = null
         this.email = ''
         this.emailState = null
+        this.password = ''
+        this.passwordState = null
     },
     checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
         this.nameState = valid
         this.emailState = valid
+        this.passwordState = valid
         return valid
     },
     initiateUpdate(bvModalEvt){
@@ -73,7 +95,7 @@ export default {
         this.$nextTick(() => {
           this.$bvModal.hide('update-user-modal')
         })
-      this.$emit('initiateUpdate', this.name, this.email)
+      this.$emit('initiateUpdate', this.name, this.email, this.password)
     }
   }
 };

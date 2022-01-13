@@ -17,6 +17,7 @@
           <b-form-input
             id="name-input"
             v-model="name"
+            placeholder="Enter your name"
             :state="nameState"
             required
           ></b-form-input>
@@ -30,7 +31,22 @@
           <b-form-input
             id="email-input"
             v-model="email"
+            placeholder="Enter your email"
             :state="emailState"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="Password"
+          label-for="password-input"
+          invalid-feedback="Password is required"
+          :state="passwordState"
+        >
+          <b-form-input
+            id="password-input"
+            v-model="password"
+            placeholder="Enter your password"
+            :state="passwordState"
             required
           ></b-form-input>
         </b-form-group>
@@ -47,6 +63,8 @@ export default {
       nameState: null,
       email:'',
       emailState: null,
+      password:'',
+      passwordState: null,
      };
   },
   methods: {
@@ -55,11 +73,14 @@ export default {
         this.nameState = null
         this.email = ''
         this.emailState = null
+        this.password = ''
+        this.passwordState = null
     },
     checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
         this.nameState = valid
         this.emailState = valid
+        this.passwordState = valid
         return valid
     },
     initiateCreate(bvModalEvt){
@@ -73,7 +94,7 @@ export default {
         this.$nextTick(() => {
           this.$bvModal.hide('create-user-modal')
         })
-      this.$emit('initiateCreate', this.name, this.email)
+      this.$emit('initiateCreate', this.name, this.email, this.password)
     }
   }
 };
