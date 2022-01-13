@@ -36,7 +36,7 @@
           </a>
         </template>
         <template #cell(edit)="data">
-          <a @click="selectedUser=data.item" v-b-modal.confirmation-modal>
+          <a @click="selectedUser=data.item" v-b-modal.update-user-modal>
             <b-icon icon="pencil-fill" variant="primary" aria-hidden="true"></b-icon>
           </a>
         </template>
@@ -52,6 +52,11 @@
     <CreateUserModal
       v-on:initiateCreate="createUser"
     ></CreateUserModal>
+
+    <UpdateUserModal
+      v-on:initiateUpdate="updateUser"
+      v-bind:user="selectedUser"
+    ></UpdateUserModal>
    
     <Confirmation
       v-on:confirmationOk="deleteUser"
@@ -65,6 +70,8 @@
 import UserDataService from "../services/UserDataService";
 import Confirmation from "../components/modal/Confirmation";
 import CreateUserModal from "../components/modal/CreateUserModal";
+import UpdateUserModal from "../components/modal/UpdateUserModal";
+
 export default {
   name: "users-list",
   data() {
@@ -78,7 +85,8 @@ export default {
   },
   components:{
     Confirmation,
-    CreateUserModal
+    CreateUserModal,
+    UpdateUserModal
   },
   methods: {
     retrieveUsers() {
@@ -107,6 +115,26 @@ export default {
         });
       this.$nextTick(() => {
           this.$bvModal.hide('create-user-modal')
+      })
+    },
+    updateUser(name,email){
+      const body = {'name':name,'email':email}
+      if(this.selectedUser.email != null){
+          UserDataService.update(this.selectedUser._id.$oid, body)
+            .then(response => {
+              //this.users = response.data;
+              this.retrieveUsers();
+              this.makeToast('success',`Update user ${this.selectedUser.email}`, 'Success')
+              console.log(response.data);
+            })
+            .catch(e => {
+              this.makeToast('danger',`Could not update user ${this.selectedUser.email}`, 'Failed')
+              console.log(e);
+            });
+      }
+      this.selectedUser = {"id": this.selectedUser.id,"email":this.selectedUser.email},
+      this.$nextTick(() => {
+          this.$bvModal.hide('update-user-modal')
       })
     },
     deleteUser(){
