@@ -57,7 +57,6 @@
 <script>
 export default {
   name: "update-user-modal",
-  props: ['user'],
   data() {
     return {
       name:'',
