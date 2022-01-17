@@ -5,7 +5,7 @@
       <div class="container">
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/">Sign in</router-link>
+            <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
           </li>
           <li class="nav-item">
             <router-link class="nav-link pr-3" to="/signup">Sign up</router-link>        

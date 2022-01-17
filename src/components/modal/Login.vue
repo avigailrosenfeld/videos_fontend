@@ -1,19 +1,38 @@
 <template>
     <div class="vue-tempalte">
-        <form>
+        <form @submit="login" method="post">
             <h3>Sign In</h3>
 
-            <div class="form-group">
-                <label>Email address</label>
-                <input type="email" class="form-control form-control-lg" />
-            </div>
+           <b-form-group
+            label="Email"
+            label-for="email-input"
+            invalid-feedback="Email is required"
+            :state="emailState"
+            >
+            <b-form-input
+                id="email-input"
+                v-model="email"
+                placeholder="Enter your email"
+                :state="emailState"
+                required
+            ></b-form-input>
+            </b-form-group>
 
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control form-control-lg" />
-            </div>
-
-            <button type="submit" class="btn btn-dark btn-lg btn-block">Sign In</button>
+             <b-form-group
+                label="Password"
+                label-for="password-input"
+                invalid-feedback="Password is required"
+                :state="passwordState"
+                >
+                <b-form-input
+                    id="password-input"
+                    v-model="password"
+                    placeholder="Enter your password"
+                    :state="passwordState"
+                    required
+                ></b-form-input>
+              </b-form-group>
+             <input type="submit" class="btn btn-dark btn-lg btn-block" value="Sign In">
 
             <p class="forgot-password text-right mt-2 mb-4">
                 <router-link to="/forgot-password">Forgot password ?</router-link>
@@ -32,9 +51,40 @@
 </template>
 
 <script>
+
+import UserDataService from "../../services/UserDataService";
     export default {
         data() {
-            return {}
+             return {
+                email:'',
+                emailState: null,
+                password:'',
+                passwordState: null,
+                };
+        },
+        methods: {
+            login: function(e){   
+                e.preventDefault();
+
+                this.errors = [];
+
+                // Exit when the form isn't valid
+                if (this.email === '' || this.password === '') {
+                    this.errors.push('Product name is required.');
+                }
+                
+                const body = {'email':this.email, 'password':this.password}
+                
+                UserDataService.login(body)
+                    .then(response => {
+                    this.$router.push('/')
+                    console.log(response.data);
+                    })
+                    .catch(e => {
+                    console.log(e);
+                    });
+    }
         }
+        
     }
 </script>

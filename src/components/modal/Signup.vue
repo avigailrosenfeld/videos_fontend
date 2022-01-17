@@ -72,9 +72,7 @@ export default {
      };
   },
   methods: {
-
     createUser: function(e){   
-
       e.preventDefault();
 
       this.errors = [];
@@ -88,11 +86,10 @@ export default {
       
       UserDataService.create(body)
         .then(response => {
-          this.makeToast('success',`Created user ${this.name}`, 'Success')
+          this.$router.push('/login')
           console.log(response.data);
         })
         .catch(e => {
-         // this.makeToast('danger','21212'/*e.response.data.message*/, 'Failed')
           console.log(e);
         });
     }
