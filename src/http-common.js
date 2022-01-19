@@ -1,8 +1,10 @@
 import axios from "axios";
+import SERVER_URL from "../config.js"
 
 export default axios.create({
-  baseURL: "http://127.0.0.1:8000",
+  baseURL: SERVER_URL,
   headers: {
-    "Content-type": "application/json"
+    "Content-type": "application/json",
+    "Authorization": `Bearer ${localStorage.getItem('token')}`
   }
 });

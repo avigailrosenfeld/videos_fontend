@@ -67,10 +67,10 @@
 </template>
 
 <script>
-import UserDataService from "../services/UserDataService";
-import Confirmation from "../components/modal/Confirmation";
-import CreateUserModal from "../components/modal/CreateUserModal";
-import UpdateUserModal from "../components/modal/UpdateUserModal";
+import UserDataService from "../../services/UserDataService";
+import Confirmation from "./Confirmation";
+import CreateUserModal from "./CreateUserModal";
+import UpdateUserModal from "./UpdateUserModal";
 
 export default {
   name: "users-list",
