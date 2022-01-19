@@ -78,7 +78,7 @@ export default {
     return {
       selectedUser:{"id":null,"email":null},
       users: [],
-      fields: ["index","name", "email","delete","edit"],
+      fields: ["index","name", "email","password","delete","edit"],
       currentPage: 1,
       perPage: 3,
     };
