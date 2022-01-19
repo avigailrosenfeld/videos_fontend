@@ -84,7 +84,7 @@ export default {
           name: this.name,
           email: this.email,
           password: this.password,
-          is_admin: true
+          // is_admin: true
         }
 
         this.$store.dispatch('register', data)
