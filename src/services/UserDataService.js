@@ -1,34 +1,59 @@
-import http from "../http-common";
+import axios from "axios";
+import SERVER_URL from "../../config";
 
 class UserDataService {
   getAll() {
-    return http.get("/users");
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url: `${SERVER_URL}/users`, headers: headers, method: 'GET'});
   }
 
   get(id) {
-    return http.get(`/users/${id}`);
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url: `${SERVER_URL}/users/${id}`, headers: headers, method: 'GET'});
   }
 
   create(data) {
-    return http.post("/users", data);
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url: `${SERVER_URL}/users/`, data: data, headers: headers, method: 'POST'});
   }
 
   update(id, data) {
-    return http.put(`/users/${id}`, data);
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url: `${SERVER_URL}/users/${id}`, data: data, headers: headers, method: 'PUT'});
   }
 
   delete(id) {
-    return http.delete(`/users/${id}`);
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url: `${SERVER_URL}/users/${id}`, headers: headers, method: 'DELETE'});
   }
 
   deleteAll() {
-    return http.delete(`/users`);
+    let headers =  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`
+    }
+    return axios({ url:`${SERVER_URL}/users`, headers: headers, method: 'DELETE'});
   }
+<<<<<<< Updated upstream
 
+<<<<<<< Updated upstream
   login(data) {
     return http.post(`/login`, data);
   }
 
+=======
+=======
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 }
 
 export default new UserDataService();
