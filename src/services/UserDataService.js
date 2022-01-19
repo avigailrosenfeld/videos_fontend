@@ -20,7 +20,7 @@ class UserDataService {
     let headers =  {
       "Authorization": `Bearer ${localStorage.getItem('token')}`
     }
-    return axios({ url: `${SERVER_URL}/users/`, data: data, headers: headers, method: 'POST'});
+    return axios({ url: `${SERVER_URL}/users`, data: data, headers: headers, method: 'POST'});
   }
 
   update(id, data) {
