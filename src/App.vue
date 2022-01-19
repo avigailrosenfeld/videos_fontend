@@ -11,7 +11,7 @@
             <router-link class="nav-link pr-3" to="/signup">Sign up</router-link>        
           </li>
           <li class="nav-item">
-            <div v-on:click="logout" v-if="isLoggedIn" class="nav-link pr-3" v-bind:style="{cursor: pointer}">Logout</div>
+            <div v-on:click="logout" v-if="isLoggedIn" class="nav-link pr-3">Logout</div>
           </li>
         </ul>
       </div>
