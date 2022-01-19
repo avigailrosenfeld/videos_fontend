@@ -51,8 +51,6 @@
 </template>
 
 <script>
-
-import UserDataService from "../../services/UserDataService";
     export default {
         data() {
              return {
@@ -72,18 +70,12 @@ import UserDataService from "../../services/UserDataService";
                 if (this.email === '' || this.password === '') {
                     this.errors.push('Product name is required.');
                 }
-                
-                const body = {'email':this.email, 'password':this.password}
-                
-                UserDataService.login(body)
-                    .then(response => {
-                    this.$router.push('/')
-                    console.log(response.data);
-                    })
-                    .catch(e => {
-                    console.log(e);
-                    });
-    }
+                let email = this.email;
+                let password = this.password;
+                this.$store.dispatch('login', { email, password })
+                    .then(() => this.$router.push('/admin/users'))
+                    .catch(err => console.log(err))
+            }
         }
         
     }

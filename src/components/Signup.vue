@@ -57,8 +57,6 @@
 </template>
 
 <script>
-import UserDataService from "../../services/UserDataService";
-
 export default {
   
   data() {
@@ -81,18 +79,19 @@ export default {
       if (this.name === '' || this.email === '' || this.password === '') {
         this.errors.push('Product name is required.');
       }
+  
+      let data = {
+          name: this.name,
+          email: this.email,
+          password: this.password,
+          is_admin: true
+        }
+
+        this.$store.dispatch('register', data)
+          .then(() => this.$router.push('/'))
+          .catch(err => console.log(err))
       
-      const body = {'name':this.name,'email':this.email, 'password':this.password}
-      
-      UserDataService.create(body)
-        .then(response => {
-          this.$router.push('/login')
-          console.log(response.data);
-        })
-        .catch(e => {
-          console.log(e);
-        });
     }
-  },
+  }
 };
 </script>

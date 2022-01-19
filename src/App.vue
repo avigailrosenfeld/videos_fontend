@@ -10,6 +10,9 @@
           <li class="nav-item">
             <router-link class="nav-link pr-3" to="/signup">Sign up</router-link>        
           </li>
+          <li class="nav-item">
+            <div v-on:click="logout" v-if="isLoggedIn" class="nav-link pr-3" v-bind:style="{cursor: pointer}">Logout</div>
+          </li>
         </ul>
       </div>
     </nav>
@@ -27,7 +30,18 @@
 
 <script>
 export default {
-  name: "app"
+  name: "app",
+  computed: {
+      isLoggedIn: function() { return this.$store.getters.isLoggedIn }
+    },
+  methods: {
+    logout: function() {
+        this.$store.dispatch('logout')
+        .then(() => {
+          this.$router.push('/login')
+        })
+      }
+  }
 };
 </script>
 
