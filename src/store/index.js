@@ -13,8 +13,7 @@ export default new Vuex.Store({
   },
   getters: {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status,
-    isAdmin: state => state.user.is_admin
+    authStatus: state => state.status
   },
   mutations: {
     nothing(state) {state.status = 'none'},
