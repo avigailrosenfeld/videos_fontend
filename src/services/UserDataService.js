@@ -43,17 +43,6 @@ class UserDataService {
     }
     return axios({ url:`${SERVER_URL}/users`, headers: headers, method: 'DELETE'});
   }
-<<<<<<< Updated upstream
-
-<<<<<<< Updated upstream
-  login(data) {
-    return http.post(`/login`, data);
-  }
-
-=======
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 }
 
 export default new UserDataService();
