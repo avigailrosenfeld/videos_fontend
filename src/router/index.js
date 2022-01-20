@@ -33,7 +33,34 @@ const routes = [
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/videolist",
+      name: "videolist",
+      component: () => import("../components/video/VideosList.vue")
+    },
+    {
+      path: "/about_page",
+      name: "about",
+      component: () => import("../components/AboutPage.vue")
+    },
+    {
+      path: "/create_video",
+      name: "create",
+      component: () => import("../components/video/CreateVideo.vue")
+    },
+    {
+      path: "/video_details/:id",
+      name: "video_details",
+      component: () => import("../components/video/VideoDetail.vue"),
+      props: true,
+    },
+    {
+      path: "/update_video/:id",
+      name: "update_video",
+      component: () => import("../components/video/UpdateVideo.vue"),
+      props: true,
+    },
   ]
 
 
