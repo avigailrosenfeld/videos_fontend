@@ -16,7 +16,7 @@
       </div>
       <div>  
         <nav v-if="isLoggedIn">
-          <router-link class="navbar-brand" to="/videos_list">Videos</router-link>
+          <router-link class="navbar-brand" to="/video_list">Videos</router-link>
           <router-link class="navbar-brand" to="/about_page">About</router-link>
           <router-link class="navbar-brand" v-if="isAdmin" to="/users">Users</router-link>
         </nav>

@@ -27,6 +27,11 @@ const routes = [
       component: () => import('../components/register/ForgotPassword.vue')
     },
     {
+      path: "/about_page",
+      name: "about_page",
+      component: () => import("../components/theme/AboutPage.vue")
+    },
+    {
       path: "/users",
       name: "users",
       component: () => import("../components/users/UsersList.vue"),
@@ -35,32 +40,10 @@ const routes = [
       }
     },
     {
-      path: "/videos_list",
-      name: "videos_list",
-      component: () => import("../components/videos/VideosList.vue")
-    },
-    {
-      path: "/about_page",
-      name: "about_page",
-      component: () => import("../components/theme/AboutPage.vue")
-    },
-    {
-      path: "/create_video",
-      name: "create_video",
-      component: () => import("../components/videos/CreateVideo.vue")
-    },
-    {
-      path: "/video_details/:id",
-      name: "video_details",
-      component: () => import("../components/videos/VideoDetail.vue"),
-      props: true,
-    },
-    {
-      path: "/update_video/:id",
-      name: "update_video",
-      component: () => import("../components/videos/UpdateVideo.vue"),
-      props: true,
-    },
+      path: "/videos",
+      name: "videos",
+      component: () => import("../components/videos/VideoList.vue")
+    }
   ]
 
 
