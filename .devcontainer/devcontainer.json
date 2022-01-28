@@ -1,0 +1,17 @@
+{
+    "name": "Videos Frontend",
+    "settings": {   
+    },
+    "extensions": [
+        "jcbuisson.vue",
+        "octref.vetur",
+        "github.vscode-pull-request-github"
+    ],
+    "build": {
+        "dockerfile": "../Dockerfile"
+    },
+    "forwardPorts": [
+        8080
+    ],
+    "postCreateCommand": "npm install"
+}
