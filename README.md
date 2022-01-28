@@ -13,5 +13,5 @@ Run Conteiner:
 2) cmd + p. than type `> Remote-Containers: Open folder in container`
 
 Run Appication:
-1) run - `npm run serve`
+1) run in cmd - `npm run serve`
 2) run - `Run Chrome`
