@@ -14,4 +14,4 @@ Run Conteiner:
 
 Run Appication:
 1) run - `npm run serve`
-2) open `http://localhost:8080` in your browser or use `Run Chrome`
+2) run - `Run Chrome`
