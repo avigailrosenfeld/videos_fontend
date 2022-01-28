@@ -1,6 +1,6 @@
 <template>
   <nav @click="myFunction">
-    <router-link class="navbar-brand" to="/">Video Ape</router-link>
+    <router-link class="navbar-brand" to="/video_list">Videos</router-link>
     <router-link class="navbar-brand" to="/about_page">About</router-link>
     <router-link class="navbar-brand" to="/create_video"
       >Create Video</router-link

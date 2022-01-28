@@ -34,7 +34,7 @@ export default {
     //   get video
     videoDetail() {
       axios
-        .get(`http://127.0.0.1:5000/ape_blog/api/v1.0/video/${this.id}/`)
+        .get(`http://127.0.0.1:5000/ape_blog/api/v1.0/videos/${this.id}/`)
         .then((response) => {
           this.video = response.data;
           console.log(response.data);
@@ -46,7 +46,7 @@ export default {
     // delete video
     deleteVideo() {
       axios
-        .delete(`http://127.0.0.1:5000/ape_blog/api/v1.0/video/${this.id}/`)
+        .delete(`http://127.0.0.1:5000/ape_blog/api/v1.0/videos/${this.id}/`)
         .then(() => {
           this.$router.push({ name: "video" }).catch((error) => {
             console.log(error);

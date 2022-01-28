@@ -8,57 +8,57 @@ const routes = [
     {
       path: '/',
       name: 'login',
-      component: () => import('../components/Login.vue')
+      component: () => import('../components/register/Login.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../components/Login.vue')
+      component: () => import('../components/register/Login.vue')
     },
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('../components/Signup.vue')
+      component: () => import('../components/register/Signup.vue')
     },
     
     {
-      path: '/forgot-password',
-      name: 'forgot-password',
-      component: () => import('../components/ForgotPassword.vue')
+      path: '/forgot_password',
+      name: 'forgot_password',
+      component: () => import('../components/register/ForgotPassword.vue')
     },
     {
-      path: "/admin/users",
+      path: "/users",
       name: "users",
-      component: () => import("../components/admin/Users.vue"),
+      component: () => import("../components/users/UsersList.vue"),
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: "/videolist",
-      name: "videolist",
-      component: () => import("../components/video/VideosList.vue")
+      path: "/video_list",
+      name: "video_list",
+      component: () => import("../components/videos/VideosList.vue")
     },
     {
       path: "/about_page",
-      name: "about",
-      component: () => import("../components/AboutPage.vue")
+      name: "about_page",
+      component: () => import("../components/theme/AboutPage.vue")
     },
     {
       path: "/create_video",
-      name: "create",
-      component: () => import("../components/video/CreateVideo.vue")
+      name: "create_video",
+      component: () => import("../components/videos/CreateVideo.vue")
     },
     {
       path: "/video_details/:id",
       name: "video_details",
-      component: () => import("../components/video/VideoDetail.vue"),
+      component: () => import("../components/videos/VideoDetail.vue"),
       props: true,
     },
     {
       path: "/update_video/:id",
       name: "update_video",
-      component: () => import("../components/video/UpdateVideo.vue"),
+      component: () => import("../components/videos/UpdateVideo.vue"),
       props: true,
     },
   ]
