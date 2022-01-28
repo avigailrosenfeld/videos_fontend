@@ -64,7 +64,7 @@
                 let email = this.email;
                 let password = this.password;
                 this.$store.dispatch('login', { email, password })
-                    .then(() => this.$router.push('users/users'))
+                    .then(() => this.$router.push('users/'))
                     .catch(err => console.log(err))
             }
         }

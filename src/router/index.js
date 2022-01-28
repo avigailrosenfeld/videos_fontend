@@ -35,8 +35,8 @@ const routes = [
       }
     },
     {
-      path: "/video_list",
-      name: "video_list",
+      path: "/videos_list",
+      name: "videos_list",
       component: () => import("../components/videos/VideosList.vue")
     },
     {

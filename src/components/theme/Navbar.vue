@@ -4,10 +4,10 @@
       <div class="container">
         <ul class="nav navbar-nav flex-row float-right">
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/login">Sign in</router-link>
+            <router-link class="nav-link pr-3" v-if="!isLoggedIn" to="/login">Sign in</router-link>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link pr-3" to="/signup">Sign up</router-link>        
+            <router-link class="nav-link pr-3" v-if="!isLoggedIn" to="/signup">Sign up</router-link>        
           </li>
           <li class="nav-item">
             <a v-on:click="logout" v-if="isLoggedIn" class="nav-link pr-3">Logout</a>
@@ -15,10 +15,10 @@
         </ul>
       </div>
       <div>  
-        <nav >
-          <router-link class="navbar-brand" to="/videos_list">Video directory</router-link>
-          <router-link class="navbar-brand" to="/create_video">Create Video</router-link>
+        <nav v-if="isLoggedIn">
+          <router-link class="navbar-brand" to="/videos_list">Videos</router-link>
           <router-link class="navbar-brand" to="/about_page">About</router-link>
+          <router-link class="navbar-brand" v-if="isAdmin" to="/users">Users</router-link>
         </nav>
         </div>
     </nav>
@@ -27,7 +27,8 @@
 <script>
 export default {
   computed: {
-      isLoggedIn: function() { return this.$store.getters.isLoggedIn }
+      isLoggedIn: function() { return this.$store.getters.isLoggedIn },
+      isAdmin: function() { return this.$store.getters.isAdmin }
     },
   methods: {
     logout: function() {
