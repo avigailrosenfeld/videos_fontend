@@ -5,6 +5,8 @@
     "settings": {   
     },
     "extensions": [
+        "jcbuisson.vue",
+        "octref.vetur"
     ],
     "build": {
         "dockerfile": "../Dockerfile"
