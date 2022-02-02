@@ -1,4 +1,3 @@
-
 <template>
   <div class="list row shadow p-3">
     <div class="col-md-12">
