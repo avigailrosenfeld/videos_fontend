@@ -35,17 +35,8 @@
              <input type="submit" class="btn btn-dark btn-lg btn-block" value="Sign In">
 
             <p class="forgot-password text-right mt-2 mb-4">
-                <router-link to="/forgot-password">Forgot password ?</router-link>
+                <router-link to="/forgot_password">Forgot password ?</router-link>
             </p>
-
-            <div class="social-icons">
-                <ul>
-                    <li><a href="#"><i class="fa fa-google"></i></a></li>
-                    <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                </ul>
-            </div>
-
         </form>
     </div>
 </template>
@@ -73,7 +64,7 @@
                 let email = this.email;
                 let password = this.password;
                 this.$store.dispatch('login', { email, password })
-                    .then(() => this.$router.push('/admin/users'))
+                    .then(() => this.$router.push('users/'))
                     .catch(err => console.log(err))
             }
         }

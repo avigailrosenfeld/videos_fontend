@@ -9,11 +9,13 @@ export default new Vuex.Store({
   state: {
     status: '',
     token: localStorage.getItem('token') || '',
+    role : 1,//TODO
     user: {}
   },
   getters: {
     isLoggedIn: state => !!state.token,
-    authStatus: state => state.status
+    authStatus: state => state.status,
+    isAdmin: state => state.role,
   },
   mutations: {
     nothing(state) {state.status = 'none'},

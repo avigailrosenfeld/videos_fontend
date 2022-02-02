@@ -8,32 +8,42 @@ const routes = [
     {
       path: '/',
       name: 'login',
-      component: () => import('../components/Login.vue')
+      component: () => import('../components/register/Login.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import('../components/Login.vue')
+      component: () => import('../components/register/Login.vue')
     },
     {
       path: '/signup',
       name: 'signup',
-      component: () => import('../components/Signup.vue')
+      component: () => import('../components/register/Signup.vue')
     },
     
     {
-      path: '/forgot-password',
-      name: 'forgot-password',
-      component: () => import('../components/ForgotPassword.vue')
+      path: '/forgot_password',
+      name: 'forgot_password',
+      component: () => import('../components/register/ForgotPassword.vue')
     },
     {
-      path: "/admin/users",
+      path: "/about_page",
+      name: "about_page",
+      component: () => import("../components/theme/AboutPage.vue")
+    },
+    {
+      path: "/users",
       name: "users",
-      component: () => import("../components/admin/Users.vue"),
+      component: () => import("../components/users/UsersList.vue"),
       meta: {
         requiresAuth: true
       }
-    }
+    },
+    {
+      path: "/videos",
+      name: "videos",
+      component: () => import("../components/videos/VideosList.vue")
+    },
   ]
 
 
