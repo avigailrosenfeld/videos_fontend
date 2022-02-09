@@ -18,6 +18,7 @@ class VideoDataService {
 
   create(data) {
     let headers =  {
+      "Content-Type": `multipart/form-data`,
       "Authorization": `Bearer ${localStorage.getItem('token')}`
     }
     return axios({ url: `${SERVER_URL}/videos`, data: data, headers: headers, method: 'POST'});

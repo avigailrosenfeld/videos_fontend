@@ -7,7 +7,7 @@
       @hidden="resetCreateModal"
       @ok="initiateCreate"
       >
-      <form ref="form" @submit.stop.prevent="initiateCreate">
+      <form ref="form" @submit.stop.prevent="initiateCreate" enctype="multipart/form-data"> 
         <b-form-group
           label="FileName"
           label-for="filename-input"
@@ -26,14 +26,14 @@
           label="VideoFile"
           label-for="video-file-input"
           invalid-feedback="Video File is required"
-          :state="videoFileState"
+          :state="Boolean(videofile)"
         >
           <b-form-file
             id="video-file-input"
             v-model="videofile"
             accept=".mp4"
             placeholder="Choose a file or drop it here..."
-            :state="videoFileState"
+            :state="Boolean(videofile)"
             required
           ></b-form-file>
         </b-form-group>
@@ -42,6 +42,9 @@
 </template>
 
 <script>
+
+import axios from "axios";
+
 export default {
   name: "create-video-modal",
   data() {
@@ -85,6 +88,7 @@ export default {
         this.sizeState = valid
         return valid
     },
+    
     initiateCreate(bvModalEvt){
         //Prevent modal from closing
         bvModalEvt.preventDefault()
@@ -96,7 +100,38 @@ export default {
         this.$nextTick(() => {
           this.$bvModal.hide('create-video-modal')
         })
-      this.$emit('initiateCreate', this.filename, this.videofile, this.length, this.width, this.height, this.size)
+
+        // Set formData
+        const formData = new FormData();
+        // Append the file
+        formData.append('videofile', this.videofile);
+        formData.append('filename' ,this.filename);
+
+
+       axios.post(`http://172.17.0.2:8000/videos`, formData,   {headers :  {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`,
+      "Content-Type": `multipart/form-data; boundary=${formData._boundary}`
+      
+    },}).then((res) => {
+
+     console.log(res)
+
+
+}).catch((error) => {
+
+    console.log(error)
+
+})
+
+
+   
+    
+        // try{
+        //    this.$emit('initiateCreate', formData);
+        // } catch(err){
+        //   console.log(err);
+        // }
+        
     }
   }
 };
