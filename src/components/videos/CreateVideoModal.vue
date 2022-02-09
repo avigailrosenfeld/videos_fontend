@@ -14,13 +14,28 @@
           invalid-feedback="FileName is required"
           :state="filenameState"
         >
-          <b-form-input
-            id="filename-input"
-            v-model="filename"
-            placeholder="Enter your name"
-            :state="filenameState"
+        <b-form-input
+          id="filename-input"
+          v-model="filename"
+          placeholder="Enter your file name"
+          :state="filenameState"
+          required
+        ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="VideoFile"
+          label-for="video-file-input"
+          invalid-feedback="Video File is required"
+          :state="videoFileState"
+        >
+          <b-form-file
+            id="video-file-input"
+            v-model="videofile"
+            accept=".mp4"
+            placeholder="Choose a file or drop it here..."
+            :state="videoFileState"
             required
-          ></b-form-input>  
+          ></b-form-file>
         </b-form-group>
       </form>
     </b-modal>
@@ -31,15 +46,17 @@ export default {
   name: "create-video-modal",
   data() {
     return {
-      filename:'',
+      filename:'123',
       filenameState: null,
-      length:'',
+      videofile:'123',
+      videoFileState: null,
+      length:'123',
       lengthState: null,
-      width:'',
+      width:'123',
       widthState: null,
-      height:'',
+      height:'123',
       heightState: null,
-      size:'',
+      size:'123',
       sizeState: null,
      };
   },
@@ -47,6 +64,8 @@ export default {
     resetCreateModal() {
         this.filename = ''
         this.filenameState = null
+        this.videofile = ''
+        this.videoFileState = null
         this.length = ''
         this.lengthState = null
         this.width = ''
@@ -59,6 +78,7 @@ export default {
     checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
         this.filenameState = valid
+        this.videoFileState = valid
         this.lengthState = valid
         this.widthState = valid
         this.heightState =  valid
@@ -76,7 +96,7 @@ export default {
         this.$nextTick(() => {
           this.$bvModal.hide('create-video-modal')
         })
-      this.$emit('initiateCreate', this.filenameState, this.lengthState, this.widthState, this.heightState, this.sizeState)
+      this.$emit('initiateCreate', this.filename, this.videofile, this.length, this.width, this.height, this.size)
     }
   }
 };
