@@ -35,7 +35,6 @@
               label-for="private-checkbox"
               invalid-feedback="Private is required"
               :state="privateState"
-              required
             ></b-form-group>
           </b-col>
           <b-col>
@@ -118,29 +117,38 @@
         <b-form-row>
           <b-col>
             <b-form-group
-              label="Deletion Date:"
               label-for="deletiondate-input"
-              invalid-feedback="Deletion Date is required"
-              :state="deletionDateState"
               v-slot="{ ariaDescribedby }"
             >
-              <b-form-checkbox-group
-                v-model="deletiondatecheckbox"
+              <b-form-radio-group
+                v-model="state"
                 :aria-describedby="ariaDescribedby"
                 aria-controls="ex-disabled-readonly"
-                switches
-              >
-                <b-form-checkbox
-                id="deletiondate-checkbox"
-                value=[1]
-                ></b-form-checkbox>
-              </b-form-checkbox-group>
+              >  
+              <b-form-row>
+                <b-col>
+                  <b-form-group   
+                    label="Deletion Date:"  
+                  ></b-form-group>
+               </b-col>
+                <b-col>
+                  <b-form-radio
+                      value="disable"
+                    >Disable</b-form-radio>
+                    <b-form-radio
+                      value="normal"
+                    >Enable</b-form-radio>
+                 </b-col>
+                 </b-form-row>          
+              </b-form-radio-group> 
             </b-form-group> 
           </b-col>
           <b-col>
             <b-form-datepicker 
               id="datepicker"
-              :disabled="disabled"
+              :disabled="disableddatepicker"
+              v-model="deletionDate"
+              :state="deletionDateState"
             ></b-form-datepicker>
           </b-col>
         </b-form-row>
@@ -187,39 +195,43 @@ export default {
       ownerState: null,
       deletionDate: '',
       deletionDateState: null,
-      deletiondatecheckbox: [0],
+      state: "disable",
       videofile:[],
       videoFileState: null
      };
   },
   computed: {
-      disabled() {
-        return this.deletiondatecheckbox === [0]
-      }
+    disableddatepicker() {
+        return this.state === "disable" 
+    }     
   },
   methods: {
     resetCreateModal() {
         this.filename = ''
         this.filenameState = null
+        this.privatevideo =  []
+        this.privateState =  null
+        this.anonymousembed =  []
+        this.anonymousembedState =  null
+        this.tags =  ''
+        this.tagsState =  null
+        this.owner =  ''
+        this.ownerState =  null
+        this.deletionDate =  ''
+        this.deletionDateState =  null
+        this.stat =  "disable"
         this.videofile = []
-        this.videoFileState = null
-        this.privatevideo = ''
-        this.privateState = null
-        this.width = ''
-        this.widthState = null
-        this.height = ''
-        this.heightState =  null
-        this.size = ''
-        this.sizeState = null
+        this.videoFileState =  null
     },
     checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
         this.filenameState = valid
-        this.videoFileState = valid
-        this.privateState = valid
-        this.widthState = valid
-        this.heightState =  valid
-        this.sizeState = valid
+        this.privateState =  valid
+        this.anonymousembedState =  valid
+        this.tagsState =  valid
+        this.ownerState =  valid
+        this.deletionDateState =  (this.stat ===  "disable") ? '' : valid
+        this.videoFileState =  valid
         return valid
     },
     
@@ -238,10 +250,20 @@ export default {
         // Set formData
         const formData = new FormData();
         // Append the file
-        formData.append('videofile', this.videofile);
-        formData.append('filename' ,this.filename);
+        formData.append('filename', this.filename);
+        formData.append('privatevideo' ,this.privatevideo);
+        formData.append('anonymousembed' ,this.anonymousembed);
+        formData.append('tags' ,this.tags);
+        formData.append('owner' ,this.owner);
+        formData.append('deletionDate' ,this.deletionDate);
+        formData.append('videofile' ,this.videofile);
 
-
+        // try{
+        //     this.$emit('initiateCreate', formData);
+        // } catch(err){
+        //   console.log(err);
+        // }
+        
        axios.post(`http://172.17.0.3:8000/videos`, formData,   {headers :  {
       "Authorization": `Bearer ${localStorage.getItem('token')}`,
       "Content-Type": `multipart/form-data; boundary=${formData._boundary}`
@@ -260,12 +282,7 @@ export default {
 
    
     
-        // try{
-        //    this.$emit('initiateCreate', formData);
-        // } catch(err){
-        //   console.log(err);
-        // }
-        
+       
     }
   }
 };
