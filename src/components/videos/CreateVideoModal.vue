@@ -157,7 +157,7 @@
           label="File:"
           label-for="video-file-input"
           invalid-feedback="Video File is required"
-          :state="videoFileState"
+          :state="Boolean(videofile)"
         >
           <b-form-file
             id="video-file-input"
@@ -166,9 +166,9 @@
                     *.3gp|*.asf|*.avi|*.dif|*.dv|*.f4v|*.flv|*.fmp4|*.m4v|*.mov|*.movie2|*.mp4|*.mpe|*.mpeg|*.mpg|*.ogv 
                     *.qt|*.rmvb|*.rv|*.swf|*.swfl|*.ts|*.webm|*.wmv"
             placeholder="Choose a file or drop it here..."
-            :state="videoFileState"
+            :state="Boolean(videofile)"
             required
-            multiple
+            
           ></b-form-file>
         </b-form-group>
       </form>
@@ -196,8 +196,7 @@ export default {
       deletionDate: '',
       deletionDateState: null,
       state: "disable",
-      videofile:[],
-      videoFileState: null
+      videofile:[]
      };
   },
   computed: {
@@ -221,7 +220,6 @@ export default {
         this.deletionDateState =  null
         this.stat =  "disable"
         this.videofile = []
-        this.videoFileState =  null
     },
     checkFormValidity() {
         const valid = this.$refs.form.checkValidity()
@@ -231,7 +229,6 @@ export default {
         this.tagsState =  valid
         this.ownerState =  valid
         this.deletionDateState =  (this.stat ===  "disable") ? '' : valid
-        this.videoFileState =  valid
         return valid
     },
     
